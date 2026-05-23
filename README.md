@@ -12,6 +12,7 @@ browser-based experimental interface
 ```
 
 ## Function
+
 **（1）Connects to a Tobii eye tracker**  
 
 **（2）Subscribes to multiple Tobii data streams:**  
@@ -42,20 +43,32 @@ project/
 ├── README.md
 ```
 
-## 环境要求
-Windows
-Visual Studio
-Tobii Eye Tracker
-Tobii SDK / Tobii headers
-C++17 或更高版本
-Crow HTTP/WebSocket library
-浏览器：Chrome 或 Edge 推荐
+## Environmental Requirements
 
-## 后端启动方式
-使用 Visual Studio 打开 C++ 项目。
-确认 Tobii 眼动仪已连接并完成校准。
-编译并运行后端程序。
-后端默认启动以下服务：
+Windows  
+
+Visual Studio  
+
+Tobii Eye Tracker  
+
+Tobii SDK / Tobii headers  
+
+C++17 or above  
+
+Crow HTTP/WebSocket library  
+
+Recommended browsers: Chrome, Edge  
+
+## Backend Startup Method
+
+Open the C++ project with Visual Studio  
+
+Ensure the Tobii eye tracker is connected and calibrated  
+
+Compile and run the backend program  
+
+The following services will launch by default:  
+
 ```
 HTTP:      http://127.0.0.1:9001
 WebSocket: ws://127.0.0.1:9001/ws
@@ -63,22 +76,29 @@ Status:   http://127.0.0.1:9001/api/status
 Latest:   http://127.0.0.1:9001/api/latest
 ```
 
-## 前端启用方式
-启动后端程序。
-用浏览器打开实验网页。
-网页会连接：
+## Frontend Activation Method
+
+Start the backend program  
+
+Open the experimental webpage via browser  
+
+The webpage will connect to:  
+
 ```
 ws://127.0.0.1:9001/ws
 ```
-实验开始后，前端通过 API 控制数据记录：
+
+After the experiment starts, the frontend controls data recording via API 
 ```
 POST /api/experiment/start
 POST /api/experiment/stop
 POST /api/stage/start
 POST /api/stage/stop
 ```
-## 数据保存
-主要输出包括：
+## Data Saving
+
+Main outputs include:  
+
 ```
 full_stream.jsonl
 stage_xxx.jsonl
