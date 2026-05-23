@@ -13,11 +13,11 @@
 
 namespace fs = std::filesystem;
 
-// 固定实验屏幕尺寸
+// screen size
 static const int SCREEN_WIDTH = 2560;
 static const int SCREEN_HEIGHT = 1440;
 
-// 数据目录
+// Data Catalog
 static const char* DATA_ROOT = "D:\\eyetracking\\tobiieyetrack\\data";
 static const char* INDEX_FILE_PATH = "D:\\eyetracking\\tobiieyetrack\\data\\index.txt";
 
@@ -172,7 +172,6 @@ std::string json_bool(bool v)
     return v ? "true" : "false";
 }
 
-// 修复：把 {"a":1,"b":2} 变成 "a":1,"b":2，供顶层对象拼接
 static std::string unwrap_json_object(const std::string& obj_json)
 {
     if (obj_json.size() >= 2 && obj_json.front() == '{' && obj_json.back() == '}')
