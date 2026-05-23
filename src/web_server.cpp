@@ -89,7 +89,7 @@ void start_web_server()
             return make_json_response(200, "{\"ok\":true}");
         });
 
-    // -------- OPTIONS 预检：显式处理最重要的 POST 路由 --------
+    // -------- OPTIONS Preflight: Explicitly handle the most important POST routes --------
     CROW_ROUTE(app, "/api/experiment/start").methods(crow::HTTPMethod::OPTIONS)
         ([]() { return make_options_response(); });
 
@@ -111,7 +111,7 @@ void start_web_server()
     CROW_ROUTE(app, "/api/request_stop").methods(crow::HTTPMethod::OPTIONS)
         ([]() { return make_options_response(); });
 
-    // -------- 通用兜底 OPTIONS --------
+    // -------- General fallback OPTIONS --------
     CROW_ROUTE(app, "/api/<path>").methods(crow::HTTPMethod::OPTIONS)
         ([](const std::string&)
             {
@@ -354,7 +354,7 @@ void start_web_server()
                 return make_json_response(ok ? 200 : 400, oss.str());
             });
 
-    // 兼容旧接口
+    // Compatible with old interfaces
     CROW_ROUTE(app, "/api/start").methods(crow::HTTPMethod::POST)
         ([]()
             {
