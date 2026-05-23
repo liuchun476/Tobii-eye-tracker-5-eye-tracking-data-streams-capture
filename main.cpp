@@ -18,19 +18,19 @@ int main()
     std::cout << "========== MAIN START ==========" << std::endl;
     std::cout << "Hello, tobii" << std::endl;
 
-    // 1. 创建 Tobii API
+    // 1. Create Tobii API
     std::cout << "[main] creating Tobii API..." << std::endl;
     api = api_create();
     std::cout << "[main] api_create done, api="
         << (api ? "non-null" : "nullptr") << std::endl;
 
-    // 2. 枚举设备（无设备时不退出）
+    // 2. Enumerate devices (do not exit if no devices)
     std::cout << "[main] enumerating Tobii device..." << std::endl;
     char* device_url = get_device(api);
     std::cout << "[main] get_device done, url="
         << (device_url ? device_url : "nullptr") << std::endl;
 
-    // 3. 创建设备
+    // 3. Create devices
     std::cout << "[main] creating Tobii device..." << std::endl;
     device = device_create(api, device_url);
     std::cout << "[main] device_create done, device="
@@ -88,7 +88,7 @@ int main()
 
     std::cout << "[main] shared state initialized" << std::endl;
 
-    // 4. 设备存在则订阅所有流
+    // 4. Subscribe to all streams if the device exists
     if (device != nullptr)
     {
         std::cout << "[main] subscribing all available Tobii streams..." << std::endl;
@@ -100,12 +100,12 @@ int main()
         std::cout << "[main] Running without Tobii device. Web service is still available." << std::endl;
     }
 
-    // 5. 启动 UDP 服务（兼容旧逻辑）
+    // 5. Start UDP service
     std::cout << "[main] starting UDP server..." << std::endl;
     init_udp_server();
     std::cout << "[main] UDP server started" << std::endl;
 
-    // 6. 启动 Web 服务线程
+    // 6. Start the web service thread
     std::cout << "[main] starting web server thread..." << std::endl;
     std::thread web_thread([]()
         {
@@ -146,7 +146,7 @@ int main()
             }
         }
 
-        // 保留 UDP 接收，仅兼容旧逻辑
+        // Keep UDP reception
         int strLen = recvfrom(sock, buffer, BUF_SIZE - 1, 0, &clientAddr, &nSize);
 
         if (strLen == SOCKET_ERROR)
@@ -163,7 +163,7 @@ int main()
             std::cout << "[main] UDP recv: " << buffer << std::endl;
         }
 
-        // 持续处理 Tobii callbacks
+        // Continuous processing Tobii callbacks
         if (device != nullptr)
         {
             result = tobii_wait_for_callbacks(1, &device);
