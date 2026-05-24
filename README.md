@@ -27,7 +27,7 @@ _gaze_point_, _gaze_origin_, _eye_position_normalized_, _head_pose_, _user_prese
 ```
 project/
 ├── src/
-│   ├── global.h
+│   ├── global.cpp /global.h
 │   ├── connect.cpp / connect.h
 │   ├── save_data.cpp / save_data.h
 │   ├── shared_state.cpp / shared_state.h
