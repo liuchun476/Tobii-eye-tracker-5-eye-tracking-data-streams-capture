@@ -38,8 +38,7 @@ project/
 │   ├── tobii.h
 │   ├── tobii_streams.h
 │
-├── experiment.js
-├── index.html
+├── main.cpp
 ├── README.md
 ```
 
